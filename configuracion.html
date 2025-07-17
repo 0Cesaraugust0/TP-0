@@ -56,7 +56,6 @@
     <h2>Panel de Configuración (Admin)</h2>
 
     <div class="checkbox-group">
-      <label><input type="checkbox" id="chkResponsive"> Desactivar Responsive en Tablets</label>
       <label><input type="checkbox" id="chkEncuesta"> Mostrar Encuesta</label>
       <label><input type="checkbox" id="chkOscuro"> Tema Oscuro</label>
     </div>
@@ -67,13 +66,11 @@
   <script>
     // Cargar configuración guardada al iniciar
     window.onload = function () {
-      document.getElementById('chkResponsive').checked = localStorage.getItem("modoResponsive") !== "false";
       document.getElementById('chkEncuesta').checked = localStorage.getItem("mostrarEncuesta") !== "false";
       document.getElementById('chkOscuro').checked = localStorage.getItem("temaOscuro") === "true";
     };
 
     function guardarConfiguracion() {
-      localStorage.setItem("modoResponsive", document.getElementById('chkResponsive').checked);
       localStorage.setItem("mostrarEncuesta", document.getElementById('chkEncuesta').checked);
       localStorage.setItem("temaOscuro", document.getElementById('chkOscuro').checked);
 
