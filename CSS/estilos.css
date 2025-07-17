@@ -251,7 +251,7 @@ body,
 }
 
 /* Responsive SOLO para tablets */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1440px) {
   .container {
     flex-direction: row;
   }
