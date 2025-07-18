@@ -6,59 +6,10 @@
   <title>Explora LAIA</title>
   <link rel="stylesheet" href="CSS/estilos.css" />
 </head>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // 1. Tema oscuro
-    if (localStorage.getItem("temaOscuro") === "true") {
-      document.body.style.backgroundColor = "#111";
-      document.body.style.color = "#f0f0f0";
-
-      // Ajustar texto de tarjetas si lo deseas
-      document.querySelectorAll(".card").forEach(card => {
-        card.style.backgroundColor = "#222";
-        card.style.color = "#fff";
-      });
-    }
-
-    // 2. Ocultar encuesta si está desactivada
-    if (localStorage.getItem("mostrarEncuesta") === "false") {
-      const encuesta = document.querySelector('.encuesta-box');
-      if (encuesta) {
-        encuesta.style.display = "none";
-      }
-    }
-
-    // 3. Forzar ancho fijo si el modo responsive está apagado
-    const responsiveActivo = localStorage.getItem("modoResponsive");
-    if (responsiveActivo === "false") {
-      const metaViewport = document.querySelector('meta[name="viewport"]');
-      if (metaViewport) {
-        metaViewport.setAttribute("content", "width=1024");
-      }
-
-      // También puedes limitar el contenedor si quieres
-      const container = document.querySelector('.container');
-      if (container) {
-        container.style.maxWidth = "1024px";
-        container.style.margin = "0 auto";
-      }
-    }
-
-    // 💬 Debug rápido
-    console.log("🎛️ Configuración aplicada desde localStorage");
-    console.table({
-      temaOscuro: localStorage.getItem("temaOscuro"),
-      mostrarEncuesta: localStorage.getItem("mostrarEncuesta"),
-      modoResponsive: localStorage.getItem("modoResponsive")
-    });
-  });
-
-
      <script>
         // PASO 2: Reemplaza esta URL de la API con la URL de tu aplicación publicada.
         // Asegúrate de que termine en '/api/vote'.
-        const API_URL = 'https://studio--choice-counter.us-central1.hosted.app';
+        const API_URL = 'https://studio--choice-counter.us-central1.hosted.app/api/vote';
 
         async function sendVote(choiceId) {
             const messageElement = document.getElementById('message');
@@ -155,8 +106,6 @@
     <option value="indiferente">Estoy indiferente</option>
   </select>
 </div>
-
-
 
 
       
