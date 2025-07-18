@@ -454,22 +454,6 @@ body {
 
 
 
-/* Limita el tamaño del popup de Landbot */
-.LandbotPopup .PopupContent {
-  max-width: 360px !important;
-  max-height: 600px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-}
 
-/* Responsivo: más ancho en pantallas grandes */
-@media screen and (min-width: 768px) {
-  .LandbotPopup .PopupContent {
-    max-width: 400px !important;
-    max-height: 700px !important;
-  }
-}
 
 
