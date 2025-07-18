@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ExploraIA</title>
+  <title>Explora LAIA</title>
   <link rel="stylesheet" href="CSS/estilos.css" />
 </head>
 
@@ -53,6 +53,7 @@
       modoResponsive: localStorage.getItem("modoResponsive")
     });
   });
+
 </script>
 
 
@@ -64,12 +65,14 @@
     <!-- Sidebar -->
     <aside class="sidebar">
 <div class="logo" style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-bottom: 20px;">
-  <img src="img/logos/laia-logo.png" alt="IA" style="width: 150px; height: auto;" />
-  <h1 style="margin: ; margin-top: 30px; font-size: 22px;">ExploraIA</h1>
+  <img src="img/logos/laia-logo.png" alt="IA" style="width: 260px; height: auto;" />
+
+  <h1 style="margin: ; margin-top: 30px; font-size: 22px;"></h1>
 </div>
 
+  <button class="more-btn" onclick="if(myLandbot){ myLandbot.open(); }">💬 Hablar con el Bot</button>
+</a>
 
-      <input type="text" placeholder="Search" class="search" />
 
       <div class="dropdown">
         <label>Categorias:</label>
@@ -91,15 +94,38 @@
   <p>¿Nos ayudas completando esta <a href="HTML/informacion/encuesta.html" target="_blank">encuesta</a> rápida?</p>
 </div>
 
+<!-- Franja de redes sociales -->
+<div class="social-strip">
+  <a href="https://www.facebook.com/" target="_blank" title="Facebook">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+  </a>
+  <a href="https://www.instagram.com/" target="_blank" title="Instagram">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+  </a>
+  <a href="https://wa.me/1234567890" target="_blank" title="WhatsApp">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp">
+  </a>
+</div>
+
+
+<iframe
+  src="https://tu-aplicacion-de-encuestas.web.app"
+  style="width: 100%; height: 600px; border: none;"
+  title="Mi Encuesta Interactiva">
 
 
       <div class="filter">
-        <label>Tus búsquedas:</label>
-        <select>
-          <option value="" disabled selected hidden></option>
-          <option>Filtrar</option>
-        </select>
-      </div>
+  <label>Tus búsquedas:</label>
+  <select>
+    <option value="" disabled selected hidden>Seleccionar...</option>
+    <option>Estoy involucrado</option>
+    <option>Muy provechosas</option>
+    <option>Sí, gracias</option>
+    <option>Estoy indiferente</option>
+  </select>
+</div>
+</iframe>
+
 
       
    <!-- Tarjetas
@@ -316,5 +342,43 @@
     });
   </script>
   
+<footer class="footer">
+  <div class="footer-social">
+    <a href="https://www.facebook.com/" target="_blank" title="Facebook">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+    </a>
+    <a href="https://www.instagram.com/" target="_blank" title="Instagram">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+    </a>
+    <a href="https://wa.me/1234567890" target="_blank" title="WhatsApp">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp">
+    </a>
+  </div>
+  <p class="footer-text">© 2025 Explora LAIA. Todos los derechos reservados.</p>
+</footer>
+
+
+
+<script type="module">
+  let myLandbot;
+
+  // Solo se carga si hacés clic en tu botón, no con mouseover
+  document.getElementById('abrirChat').addEventListener('click', () => {
+    if (myLandbot) {
+      myLandbot.open(); // abrir si ya está cargado
+      return;
+    }
+
+    import('https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs').then(({ Landbot }) => {
+      myLandbot = new Landbot.Popup({
+        configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-3053723-01GWDFMBWJVYGM4R/index.json',
+      });
+      myLandbot.open(); // abrirlo inmediatamente sin ícono
+    });
+  });
+</script>
+
+
+
 </body>
 </html>
