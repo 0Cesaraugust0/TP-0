@@ -49,6 +49,7 @@
 
   <div class="container">
     <!-- Sidebar -->
+
     <aside class="sidebar">
 <div class="logo" style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-bottom: 20px;">
   <img src="img/logos/laia-logo.png" alt="IA" style="width: 260px; height: auto;" />
@@ -60,19 +61,20 @@
 </a>
 
 
-      <div class="dropdown">
-        <label>Categorias:</label>
-        <select>
-        <option value=""  disabled selected hidden>Elegir</option>
-        <option>Inicio</option>
-        <option>Marketing </option>
-        <option>Finanzas</option>
-        <option>Inversión</option>
-        <option>Música</option>
-        <option>Desarrollo</option>
-        <option>Startups</option>
-      </select>
-      </div>
+<div class="dropdown">
+  <label>Categorías:</label>
+  <select id="categoria-select" onchange="filtrarPorCategoria(this.value)">
+    <option value="" disabled selected hidden>Elegir</option>
+    <option value="Marketing">Marketing</option>
+    <option value="Finanzas">Finanzas</option>
+    <option value="Inversion">Inversion</option>
+    <option value="Música">Música</option>
+    <option value="Startups">Startups</option>
+    <option value="Desarrollo">Desarrollo</option>
+    <option value="todas">Ver todas</option>
+  </select>
+</div>
+
 
 
 
@@ -106,17 +108,6 @@
   </select>
 </div>
 
-
-      
-   <!-- Tarjetas
-      <ul class="apps">
-        <li>ChatGPT</li>
-        <li>Jasper</li>
-        <li>Tabnine</li>
-        <li>Replit</li>
-        <li>Consensus</li>
-        <li>DALL·E</li>
-      </ul>-->
 
   <a href="https://www.vidau.ai/">
   <button class="more-btn">Mostrar más páginas como esta...</button>
@@ -154,17 +145,20 @@
       <h2>Mas Populares</h2>
       <div class="grid">
         <!-- Tarjetas -->
-        <a href="HTML/informacion/chatgpt.html" class="card">
-          <img src="img/paneles/chatgpt.jpg" alt="ChatGPT" />
-          <h3>ChatGPT</h3>
-          <p>Ver más...</p>
-        </a>
-        
-        <a href="HTML/informacion/claude.html" class="card">
-          <img src="img/paneles/claudeai.jpg" alt="Claude Ai" />
-          <h3>Claude AI</h3>
-          <p>Ver mas...</p>
-        </a>
+
+
+<a href="HTML/informacion/chatgpt.html" class="card" data-categoria="Desarrollo">
+  <img src="img/paneles/chatgpt.jpg" alt="ChatGPT" />
+  <h3>ChatGPT</h3>
+  <p>Ver más...</p>
+</a>
+
+<a href="HTML/informacion/claude.html" class="card" data-categoria="Marketing">
+  <img src="img/paneles/claudeai.jpg" alt="Claude Ai" />
+  <h3>Claude AI</h3>
+  <p>Ver más...</p>
+</a>
+
 
         <a href="HTML/informacion/dall-e.html" class="card">
           <img src="img/paneles/gemini.jpg" alt="Gemini" />
@@ -229,13 +223,14 @@
         <p>Info...</p>
       </a>
 
-      <a href="HTML/informacion/Audio.html" class="card"> 
-        <img src="img/audio.jpg" alt="Audio" />
-        <h3>Audio</h3>
-        <p>Info...</p>
+          
+      <a href="HTML/informacion/claude.html" class="card" data-categoria="Música">
+      <img src="img/audio.jpg" alt="Audio" />
+      <h3>Audio</h3>
+      <p>Info...</p>
       </a>
 
-      <a href="HTML/informacion/Productividad.html" class="card"> 
+      <a href="HTML/informacion/Productividad.html" class="card" data-categoria="Startups"> 
         <img src="img/productividad.jpg" alt="Productividad" />
         <h3>Productividad</h3>
         <p>Info...</p>
@@ -350,9 +345,32 @@
 </script>
 
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem("temaOscuro") === "true") {
+      document.body.classList.add("tema-oscuro");
+    } else {
+      document.body.classList.remove("tema-oscuro");
+    }
+  });
+</script>
 
 
+<script>
+  function filtrarPorCategoria(categoria) {
+    const cards = document.querySelectorAll('.card');
 
+    cards.forEach(card => {
+      const cardCategoria = card.dataset.categoria;
+
+      if (categoria === "todas" || cardCategoria === categoria) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+</script>
 
 </body>
 </html>

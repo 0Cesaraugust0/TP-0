@@ -22,10 +22,9 @@ body,
 }
 
 .tema-claro .sidebar {
-  background-color: #ffe1eb;
-  border-right: 1px solid #f3bdd4;
-    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
-  border-right: none;
+  background-color: #000000;
+  border-right: 1px solid #000000;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
 }
 
 
