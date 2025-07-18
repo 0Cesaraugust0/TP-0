@@ -21,12 +21,6 @@
       if (encuesta) encuesta.style.display = "none";
     }
 
-    // Desactivar responsive tablet
-    const disableResponsive = localStorage.getItem("modoResponsive") === "false";
-    if (disableResponsive) {
-      const metaViewport = document.querySelector('meta[name=viewport]');
-      if (metaViewport) metaViewport.setAttribute('content', 'width=1024'); // Forzar ancho fijo
-    }
   });
 </script>
 
@@ -66,27 +60,9 @@
 
 function iniciarSesion(event) {
   event.preventDefault();
-  localStorage.setItem("usuarioLogueado", "true");
   window.location.href = "configuracion.html"; // 🔁 Redirección al nuevo index secundario
 }
 
   </script>
-
-  <!-- Script para mostrar formularios -->
-  <script>
-    function mostrarFormulario(tipo) {
-      const loginForm = document.getElementById('form-login');
-      const registroForm = document.getElementById('form-registro');
-
-      if (tipo === 'login') {
-        loginForm.classList.add('activo');
-        registroForm.classList.remove('activo');
-      } else {
-        registroForm.classList.add('activo');
-        loginForm.classList.remove('activo');
-      }
-    }
-  </script>
-
 </body>
 </html>
