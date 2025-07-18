@@ -6,10 +6,10 @@
   <title>Explora LAIA</title>
   <link rel="stylesheet" href="CSS/estilos.css" />
 </head>
-     <script>
+   <script>
         // PASO 2: Reemplaza esta URL de la API con la URL de tu aplicación publicada.
         // Asegúrate de que termine en '/api/vote'.
-        const API_URL = 'https://studio--choice-counter.us-central1.hosted.app/api/vote';
+        const API_URL = 'https://tudominio.com/api/vote';
 
         async function sendVote(choiceId) {
             const messageElement = document.getElementById('message');
@@ -43,7 +43,6 @@
             }, 3000);
         }
     </script>
-
 
 
 <body>
@@ -280,49 +279,32 @@
       location.reload(); // Recarga la página para ocultar elementos
     }
   </script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const estaLogueado = localStorage.getItem("usuarioLogueado") === "true";
-  
-      const filtro = document.querySelector('.filter');
-      const historial = document.querySelector('.apps');
-      const linkSesion = document.getElementById('link-sesion');
-  
-      if (!estaLogueado) {
-        if (filtro) {
-          filtro.style.opacity = '0';
-          filtro.style.pointerEvents = 'none';
-        }
-        if (historial) {
-          historial.style.opacity = '0';
-          historial.style.pointerEvents = 'none';
-        }
-        if (linkSesion) {
-          linkSesion.textContent = "Registrarse";
-          linkSesion.setAttribute("href", "login.html");
-        }
-      } else {
-        if (filtro) {
-          filtro.style.opacity = '1';
-          filtro.style.pointerEvents = 'auto';
-        }
-        if (historial) {
-          historial.style.opacity = '1';
-          historial.style.pointerEvents = 'auto';
-        }
-        if (linkSesion) {
-          linkSesion.textContent = "Cerrar Sesión";
-          linkSesion.href = "#";
-          linkSesion.addEventListener("click", function(e) {
-            e.preventDefault();
-            localStorage.removeItem("usuarioLogueado");
-            location.reload();
-          });
-        }
+ 
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const estaLogueado = localStorage.getItem("usuarioLogueado") === "true";
+    const linkSesion = document.getElementById('link-sesion');
+
+    if (!estaLogueado) {
+      if (linkSesion) {
+        linkSesion.textContent = "Registrarse";
+        linkSesion.setAttribute("href", "login.html");
       }
-    });
-  </script>
-  
+    } else {
+      if (linkSesion) {
+        linkSesion.textContent = "Cerrar Sesión";
+        linkSesion.href = "#";
+        linkSesion.addEventListener("click", function(e) {
+          e.preventDefault();
+          localStorage.removeItem("usuarioLogueado");
+          location.reload();
+        });
+      }
+    }
+  });
+</script>
+
+
 <footer class="footer">
   <div class="footer-social">
     <a href="https://www.facebook.com/" target="_blank" title="Facebook">
