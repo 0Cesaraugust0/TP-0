@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Prueba 2</title>
+    <style>
+        body { font-family: sans-serif; display: grid; place-content: center; min-height: 100vh; gap: 1rem; text-align: center; }
+        #message { font-weight: bold; min-height: 2em; }
+    </style>
+</head>
+<body>
+    <h1>Prueba de Votación 2</h1>
+    <div class="filter">
+      <label for="voto">Selecciona una opción:</label>
+      <select id="voto" onchange="sendVote(this.value)">
+        <option value="" disabled selected hidden>Seleccionar...</option>
+        <option value="involucrado">Estoy involucrado</option>
+        <option value="provechosas">Muy provechosas</option>
+        <option value="gracias">Sí, gracias</option>
+        <option value="indiferente">Estoy indiferente</option>
+      </select>
+    </div>
+    <p id="message"></p>
+
+    <script>
+        // Usar una ruta relativa es más robusto para la página de prueba.
+        const API_URL = '/api/vote';
+
+        async function sendVote(choiceId) {
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = 'Enviando voto...';
+            messageElement.style.color = 'black';
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ choiceId: choiceId }),
+                });
+
+                // Primero, obtenemos la respuesta como texto para depurar
+                const responseText = await response.text();
+
+                if (!response.ok) {
+                    // Si hay un error, el texto puede ser el mensaje de error o JSON
+                    try {
+                        const errorResult = JSON.parse(responseText);
+                        throw new Error(errorResult.error || `Error del servidor: ${response.status}`);
+                    } catch (e) {
+                         throw new Error(responseText || `Error del servidor: ${response.status}`);
+                    }
+                }
+
+                // Si la respuesta fue OK, intentamos parsear el JSON
+                const result = JSON.parse(responseText);
+                console.log('Success:', result);
+                messageElement.textContent = result.message || '¡Voto recibido con éxito!';
+                messageElement.style.color = 'green';
+
+            } catch (error) {
+                console.error('Error sending vote:', error);
+                messageElement.textContent = `Error al enviar el voto: ${error.message}`;
+                messageElement.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>
